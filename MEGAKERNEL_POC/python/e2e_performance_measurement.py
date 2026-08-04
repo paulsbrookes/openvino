@@ -492,6 +492,10 @@ def main() -> None:
         print(json.dumps(results))
         return
 
+    # Artemis reads metrics from this file in the benchmark's working directory.
+    results_path = Path("artemis_results.json")
+    results_path.unlink(missing_ok=True)
+
     frameworks = [args.only_framework] if args.only_framework else args.frameworks
     print(f"Device: {args.device}   frameworks: {frameworks}")
     print(f"tokens={args.tokens}   native decode warmup={args.warmup}   "
@@ -557,6 +561,14 @@ def main() -> None:
     print("   e2e_x      end-to-end speedup (baseline total_ms / megakernel total_ms) -- reference")
     print("              (the MegaKernel prefill kernel is not yet optimized, so prefill_x")
     print("               is currently < 1; decode_x is the metric that matters for this PoC.)")
+
+    # Artemis metrics must be a flat JSON object whose values are numbers.
+    megakernel_results = all_results["native"]["megakernel"]
+    ms_per_tok = statistics.mean(row["decode"]["mean"] for row in megakernel_results)
+    results_path.write_text(
+        json.dumps({"ms_per_tok": float(ms_per_tok)}) + "\n",
+        encoding="utf-8",
+    )
 
 if __name__ == "__main__":
     main()
