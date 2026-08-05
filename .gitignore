@@ -69,3 +69,7 @@ coverage
 /tools/commit_slider/slider_cache/*
 /src/plugins/intel_cpu/thirdparty/ComputeLibrary/build/arm_compute_version.embed
 .github/GITHUB_OUTPUT
+
+# Artemis benchmark output
+/artemis_results.json
+/artemis_results.csv

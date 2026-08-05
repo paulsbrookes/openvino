@@ -523,6 +523,7 @@ def main() -> None:
     print(f"{' ' * len(h0)} | {base_lbl} | {mega_lbl} |")
     print(h0 + h1 + h2 + h3)
     print(" " + "-" * (W - 1))
+    artemis_metrics: dict[str, float] = {}
     for fw in frameworks:
         base, mega = all_results[fw]["baseline"], all_results[fw]["megakernel"]
         for b, m in zip(base, mega):
@@ -545,6 +546,22 @@ def main() -> None:
                   f" | {bpf:>8.1f} {bd:>8.3f} {b_dec_ms:>10.1f} {base_tot:>10.1f}"
                   f" | {mpf:>8.1f} {md:>8.3f} {m_dec_ms:>10.1f} {mega_tot:>10.1f}"
                   f" | {dec_x:>7.2f}x {pf_x:>8.2f}x {e2e_x:>6.2f}x")
+            if fw == "native":
+                name = b["prompt"]
+                artemis_metrics.update({
+                    f"in_tok_{name}": float(b["prompt_len"]),
+                    f"ttft_ms_{name}_baseline": float(bpf),
+                    f"ms_per_tok_{name}_baseline": float(bd),
+                    f"decode_ms_{name}_baseline": float(b_dec_ms),
+                    f"total_ms_{name}_baseline": float(base_tot),
+                    f"ttft_ms_{name}_megakernel": float(mpf),
+                    f"ms_per_tok_{name}_megakernel": float(md),
+                    f"decode_ms_{name}_megakernel": float(m_dec_ms),
+                    f"total_ms_{name}_megakernel": float(mega_tot),
+                    f"decode_x_{name}": float(dec_x),
+                    f"prefill_x_{name}": float(pf_x),
+                    f"e2e_x_{name}": float(e2e_x),
+                })
     print(f"{'=' * W}")
     print(" Legend:")
     print("   in_tok     input (prompt) token count")
@@ -557,6 +574,16 @@ def main() -> None:
     print("   e2e_x      end-to-end speedup (baseline total_ms / megakernel total_ms) -- reference")
     print("              (the MegaKernel prefill kernel is not yet optimized, so prefill_x")
     print("               is currently < 1; decode_x is the metric that matters for this PoC.)")
+
+    if artemis_metrics:
+        results_path = Path("artemis_results.json")
+        temporary_path = results_path.with_suffix(".json.tmp")
+        temporary_path.write_text(
+            json.dumps(artemis_metrics, indent=2) + "\n",
+            encoding="utf-8",
+        )
+        temporary_path.replace(results_path)
+        print(f"\nArtemis metrics: {results_path.resolve()}")
 
 if __name__ == "__main__":
     main()

@@ -1,1 +1,6 @@
 build/
+python/__pycache__/
+python/qwen3-0.6b-openvino-ir/
+python/artemis_results.json
+python/artemis_results.json.tmp
+python/artemis_results.csv
