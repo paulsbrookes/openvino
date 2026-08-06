@@ -44,8 +44,3 @@ We aim for a similar speedup.
 DAG-based Search for LLM Inference (https://arxiv.org/pdf/2605.11581)
 3) Building a single-kernel, latency-optimized LLM inference engine on AMD MI300X GPUs (https://blog.kog.ai/building-a-single-kernel-latency-optimized-llm-inference-engine-on-amd-mi300x-gpus/)
 4) Look Ma, No Bubbles! Designing a Low-Latency Megakernel for Llama-1B (https://hazyresearch.stanford.edu/blog/2025-05-27-no-bubbles)
-
-**5. Artemis Discovery**
-
-See [artemis/README.md](artemis/README.md) for the repository-owned setup,
-incremental build, benchmark-metrics, and Discovery workflow.
