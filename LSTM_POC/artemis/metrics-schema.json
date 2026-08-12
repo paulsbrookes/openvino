@@ -1,0 +1,98 @@
+[
+  {
+    "name": "bidir_b10_native_single_primitive",
+    "source": "worker",
+    "higherIsBetter": true,
+    "importance": 0.25
+  },
+  {
+    "name": "bidir_b1_native_single_primitive",
+    "source": "worker",
+    "higherIsBetter": true,
+    "importance": 0.15
+  },
+  {
+    "name": "bidir_b10_speedup_x",
+    "source": "worker",
+    "higherIsBetter": true,
+    "importance": 0.35
+  },
+  {
+    "name": "bidir_b1_speedup_x",
+    "source": "worker",
+    "higherIsBetter": true,
+    "importance": 0.25
+  },
+  {
+    "name": "bidir_b10_native_matches_decomposed",
+    "source": "worker",
+    "higherIsBetter": true,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b1_native_matches_decomposed",
+    "source": "worker",
+    "higherIsBetter": true,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b10_native_median_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b10_decomposed_median_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b1_native_median_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b1_decomposed_median_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b10_native_compile_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b10_decomposed_compile_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b1_native_compile_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b1_decomposed_compile_us",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b10_native_primitive_count",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  },
+  {
+    "name": "bidir_b1_native_primitive_count",
+    "source": "worker",
+    "higherIsBetter": false,
+    "importance": 0
+  }
+]

@@ -4,6 +4,11 @@
 
 set(TARGET_NAME ov_gpu_func_tests)
 
+# Keep persistent Artemis builds aware of the benchmark source even though this
+# target discovers sources with a configure-time glob.
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/subgraph_tests/lstm_sequence_benchmark.cpp")
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     # C4267 issues from oneDNN headers conversion from 'XXX' to 'YYY', possible loss of data
     ov_add_compiler_flags(/wd4267)
